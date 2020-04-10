@@ -1,5 +1,6 @@
 package section5;
 
+
 import java.applet.AudioClip;
 import java.awt.Dimension;
 
@@ -16,20 +17,20 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-public class ScaryMaze extends JPanel implements Runnable, MouseMotionListener {
+public class NewMaze extends JPanel implements Runnable, MouseMotionListener {
 	
 	BufferedImage maze;
-	final int frameWidth = 750;
-	final int frameHeight = 500;
+	final int frameWidth = 700;
+	final int frameHeight = 700;
 
-	ScaryMaze() throws Exception {
+	NewMaze() throws Exception {
 		//1. Use this online tool to make a maze image and drop it into your section5 package: 	
-		maze = ImageIO.read(getClass().getResource("standardMaze.jpg"));
+		maze = ImageIO.read(getClass().getResource("pixil.png"));
 		//2. Change the line of code above so that it matches your maze's file name
 		
 		//3. Set the mouse pointer to the start of your maze using:
-new Robot().mouseMove(45, 95);
-		
+		new Robot().mouseMove(900, 70);
+		//688, 70
 		//4. Add a mouse motion listener using:
 		addMouseMotionListener(this);
 		
@@ -39,6 +40,7 @@ new Robot().mouseMove(45, 95);
 	public void mouseMoved(MouseEvent e) {
 		int mouseX = e.getX();
 		int mouseY = e.getY();
+		System.out.println("MOUSE X "+mouseY+" MOUSE Y "+mouseY);
 		int mouseColor = maze.getRGB(mouseX, mouseY);
 		//5. Print the mouseColor variable 
 		System.out.println(mouseColor);
@@ -49,10 +51,11 @@ new Robot().mouseMove(45, 95);
 		//8. If the mouse falls off the path (if it is on the background)
 	if (mouseColor == -16777216) {
 				// call the scare method
-		scare(); }
+		scare();
+	}
 		//13. If the mouse is on the end color
 		//-11927788
-	if (mouseColor == -11927788) {
+	if (mouseColor == -1) {
 				// pop up a message to tell them they won
 		JOptionPane.showMessageDialog(null, "Victory Royale");}
 	}
@@ -80,7 +83,7 @@ new Robot().mouseMove(45, 95);
 	}
 
 	public static void main(String[] args) throws Exception {
-		SwingUtilities.invokeLater(new ScaryMaze());
+		SwingUtilities.invokeLater(new NewMaze());
 	}
 
 	@Override
